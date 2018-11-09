@@ -1,7 +1,7 @@
 # aws-kms-go
 Allows encoding and decoding of text from the command line using the AWS KMS service
 
-###Encoding
+### Encoding
 
 To encode a secret using kmsenc you need:
 * The text to encrypt
@@ -18,7 +18,7 @@ output:
 
 A base64 representation of the encrypted secret that can be securely stored.
 
-###Decoding
+### Decoding
 
 To decode a secret using kmsdec you need:
 * The secret text in base64
