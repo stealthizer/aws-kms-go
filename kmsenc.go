@@ -15,15 +15,29 @@ func main() {
     regionFlag := flag.String("region", "", "AWS region")
     textFlag := flag.String("text", "", "Text to encrypt")
     keyidFlag := flag.String("keyid", "", "arn from the kms key to use")
+    profileFlag := flag.String("profile", "", "AWS profile to use")
 
     flag.Parse()
     region := *regionFlag
     text := *textFlag
     keyId := *keyidFlag
+    profile := *profileFlag
 
-    sess, err := session.NewSession(&aws.Config{
-        Region: aws.String(region)},
-    )
+
+    var sess *session.Session
+    var err error
+
+    if profile == "" {
+        sess, err = session.NewSessionWithOptions(session.Options{
+                Config: aws.Config{Region: aws.String(region)},
+            })
+
+    } else {
+        sess, err = session.NewSessionWithOptions(session.Options{
+                Config: aws.Config{Region: aws.String(region)},
+                Profile: profile,
+            })
+    }
 
     svc := kms.New(sess)
 
