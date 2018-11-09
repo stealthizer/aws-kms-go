@@ -36,12 +36,12 @@ func main() {
 
     svc := kms.New(sess)
 
-	data, err := base64.StdEncoding.DecodeString(kms_secret)
-	result, err := svc.Decrypt(&kms.DecryptInput{CiphertextBlob: data})
+    data, err := base64.StdEncoding.DecodeString(kms_secret)
+    result, err := svc.Decrypt(&kms.DecryptInput{CiphertextBlob: data})
 
-	if err != nil {
-		fmt.Println("Error Decripting data", err)
-		os.Exit(1)
-	}
-	fmt.Println(string(result.Plaintext))
+    if err != nil {
+        fmt.Println("Error Decripting data", err)
+        os.Exit(1)
+    }
+    fmt.Println(string(result.Plaintext))
 }
